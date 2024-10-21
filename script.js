@@ -76,7 +76,6 @@ console.warn = function (...args) {
     originalConsole.warn.apply(console, args);
 };
 
-// Update button state
 function updateButtonState(button, isActive) {
     if (isActive) {
         button.classList.add('active');
@@ -105,7 +104,6 @@ filterWarnButton.addEventListener('click', () => {
 updateButtonState(filterLogButton, consoleFilters.log);
 updateButtonState(filterErrorButton, consoleFilters.error);
 updateButtonState(filterWarnButton, consoleFilters.warn);
-
 
 runButton.addEventListener('click', () => {
     const code = codeEditor.getValue();
@@ -174,7 +172,6 @@ shareCodeButton.addEventListener('click', () => {
     prompt('Copy and share this URL:', shareableLink);
 });
 
-
 consoleInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         const command = consoleInput.value.trim();
@@ -191,5 +188,28 @@ consoleInput.addEventListener('keydown', (event) => {
         }
         consoleInput.value = '';
         event.preventDefault();
+    }
+});
+
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+window.addEventListener('load', () => {
+    const savedCode = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const sharedCode = getQueryParam('code');
+    if (sharedCode) {
+        try {
+            const decodedCode = decodeURIComponent(escape(atob(sharedCode)));
+            codeEditor.setValue(decodedCode);
+            const formattedCode = prettier.format(decodedCode, { parser: 'babel', plugins: [window.prettierPlugins.babel] });
+            codeEditor.setValue(formattedCode);
+            history.replaceState(null, null, window.location.pathname);
+        } catch (e) {
+            console.error("Error decoding the shared code: ", e);
+        }
+    } else if (savedCode) {
+        codeEditor.setValue(savedCode);
     }
 });
