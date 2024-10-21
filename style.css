@@ -1,0 +1,216 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--editor-bg);
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.editor {
+    flex: 1;
+    padding: 10px;
+    background-color: var(--editor-bg);
+    color: var(--editor-text);
+    overflow: auto;
+    border-radius: 5px;
+}
+
+.controls {
+    background-color: var(--control-bg);
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.theme-controls {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+#toggle-theme, #github-support {
+    padding: 8px;
+    font-size: 14px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#github-support a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#toggle-theme:hover, #github-support:hover {
+    background-color: #555;
+}
+
+.console-filters {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.console-filters h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 10px;
+    font-family: 'Arial', sans-serif;
+    color: var(--editor-text);
+}
+
+.filter-button {
+    padding: 5px 15px;
+    font-size: 12px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    width: 60px;
+    height: 30px;
+}
+
+.filter-button:hover {
+    background-color: #555;
+}
+
+.filter-button.active {
+    background-color: #28a745; /* Green for active state */
+    color: white;
+}
+
+.filter-button.inactive {
+    background-color: #6c757d;
+    color: white;
+}
+
+.dark-theme .filter-button.active {
+    background-color: #20c997;
+}
+
+.dark-theme .filter-button.inactive {
+    background-color: #495057;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.console {
+    background-color: var(--console-bg);
+    color: var(--console-text);
+    padding: 10px;
+    height: 150px;
+    overflow-y: auto;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow-x: hidden;
+    border: 2px solid var(--console-border);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.console-input {
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    border: none;
+    background-color: var(--console-bg);
+    color: var(--console-text);
+    border-radius: 4px;
+    margin-top: 10px;
+    border: 2px solid var(--console-border);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--control-bg);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media (max-width: 768px) {
+    .controls {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .console {
+        height: 120px;
+        font-size: 12px;
+    }
+
+    .console-input {
+        font-size: 12px;
+    }
+}
+
+:root {
+    --editor-bg: #f9f9f9;
+    --editor-text: #333;
+    --control-bg: #eeeeee;
+    --console-bg: #eeeeee;
+    --console-text: #333;
+    --console-border: #ccc;
+    --button-bg: #333;
+    --button-text: #ffffff;
+}
+
+.dark-theme {
+    --editor-bg: #1e1e1e;
+    --editor-text: #c5c5c5;
+    --control-bg: #2e2e2e;
+    --console-bg: #1e1e1e;
+    --console-text: #d4d4d4;
+    --console-border: #4e4e4e;
+    --button-bg: #4e4e4e;
+    --button-text: #ffffff;
+}
