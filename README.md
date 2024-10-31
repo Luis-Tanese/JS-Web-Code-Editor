@@ -1,6 +1,8 @@
 # JavaScript Code Editor
 
-This repository contains a JavaScript code editor built with **CodeMirror** for syntax highlighting and **Prettier** for code formatting. It features an interactive console where users can run JavaScript code. The project also supports theme switching between light (ew) and dark modes.
+This repository contains a JavaScript code editor built with **CodeMirror** for syntax highlighting and **Prettier** for code formatting. It features an interactive console where users can run JavaScript code. The project also supports theme switching between light (ew) and dark modes
+
+### The link for the site can be found [here](https://javascript-editor.netlify.app)
 
 ## Features
 
