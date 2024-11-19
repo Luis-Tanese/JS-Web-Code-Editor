@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <a href="index.html" class="back-button">← Back</a>
+            <img src="/logo.png" class="logo">
+            <h1>Create an account!</h1>
+            <p class="womp">Already have an account? <a href="login.html">Sign-in here!</a></p>
+        </div>
+        <div class="right-side">
+            <form id="register-form" class="form">
+                <p class="title">Create your account!</p>
+                <p class="message">Fill in the fields below.</p>
+                <label>
+                    <input placeholder="" type="text" id="register-username" class="input" required>
+                    <span id="spanUsername">Username</span>
+                </label>
+                       
+                <label>
+                    <input placeholder="" id = "register-email" type="email" class="input" required>
+                    <span id="spanEmail" >Email</span>
+                </label>
+                <div class="flex">
+                    <label>
+                        <input placeholder="" id = "register-password" type="password" class="input" required>
+                        <span id="spanPassword">Password</span>
+                    </label>
+                    <label>
+                        <input placeholder="" id = "register-confirm-password" type="password" class="input" required>
+                        <span id="spanConfirmPassword">Confirm password</span>
+                    </label>
+                </div>
+                <button class="submit">Sign Up</button>
+                <p class="signin">Already have an account? <a href="login.html">Sign-in here!</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="register.js" type="module"></script>
+</html>

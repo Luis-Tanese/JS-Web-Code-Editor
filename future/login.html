@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <a href="index.html" class="back-button">← Back</a>
+            <img src="/logo.png" class="logo">
+            <h1>Welcome Back!</h1>
+            <p class="womp">Don't have an account? <a href="register.html">Sign up here!</a></p>
+        </div>
+        <div class="right-side">
+            <form id="login-form" class="form">
+                <p class="title">Welcome Back!</p>
+                <p class="message">Fill in the fields below.</p>
+                <label>
+                    <input type="email" placeholder="" id="email" class="input" required>
+                    <span id="spanEmail">Email</span>
+                </label>
+                <label>
+                    <input type="password" placeholder="" id="password"  class="input" required>
+                    <span span="spanPassword">Password</span>
+                </label>
+                <label>
+                    <input type="checkbox" id="remember-me"> Remember Me
+                </label>                
+                <button type="submit" class="submit">Login</button>
+                <p class="signin">Forgot your password? <a href="/reset-password.html">Click here!</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="login.js" type="module"></script>
+</html>

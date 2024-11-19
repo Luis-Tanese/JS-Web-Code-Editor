@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Editor</title>
+    <link rel="stylesheet" href="topbar.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-content">
+            <div class="logo">
+                <a href="index.html">JS Code Editor</a> <img src="logo.png" width="60">
+            </div>
+            <div class="user-profile">
+                <img id="user-avatar" src="default-avatar.png" alt="User Profile" class="avatar hidden">
+                <a href="login.html" id="login-link" class="hidden">Login</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div id="profile-content">
+            <h2>My Profile</h2>
+            <form class="profile-form" id="profile-form">
+                <!-- Avatar Section -->
+                <div class="profile-avatar">
+                    <img src="default-avatar.png" alt="Avatar" id="avatar-preview">
+                    <label for="avatar-upload">Change Avatar</label>
+                    <input type="file" id="avatar-upload" name="avatar">
+                </div>
+
+                <!-- Username -->
+                <label for="username"><h3>Change Username:</h3></label>
+                <input type="text" id="username" name="username" placeholder="Enter new username">
+
+                <!-- About Section -->
+                <label for="about"><h3>About:</h3></label>
+                <textarea id="about" name="about" rows="3" placeholder="Tell us about yourself"></textarea>
+
+                <h3>Activity Overview</h3>
+                <p>Scripts Saved: <span id="scripts-saved">0</span></p>
+
+                <h3>Social Links</h3>
+                <label for="github">GitHub:</label>
+                <input type="url" id="github" placeholder="https://github.com/yourusername">
+                <label for="linkedin">LinkedIn:</label>
+                <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourusername">
+
+                <!-- Password -->
+                <label for="password"><h3>Change Password:</h3></label>
+                <input type="password" id="password" name="password" placeholder="Enter new password">
+
+                <!-- Buttons -->
+                <button type="submit" class="btn">Save Changes</button>
+                <button type="discard" class="btn">Discard Changes</button>
+                <button type="button" class="btn" id="logout-btn">Logout</button>
+                <button class="btn" id="delete-account-btn">Delete Account</button>
+            </form>
+        </div>
+        <div id="delete-account-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Confirm Account Deletion</h2>
+                <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                <label for="modal-password">Enter your password:</label>
+                <input type="password" id="modal-password" class="input" placeholder="Password" />
+                <div class="modal-buttons">
+                    <button id="modal-yes" class="btn danger">Yes</button>
+                    <button id="modal-no" class="btn">No</button>
+                </div>
+                <button id="modal-close" class="btn close-btn">×</button>
+                <p id="modal-error" class="error hidden">Incorrect password. Please try again.</p>
+            </div>
+        </div>
+    </div>
+    <script src="profile.js" type="module"></script>
+    <script src="topbar.js" type="module"></script>
+</body>
+</html>
