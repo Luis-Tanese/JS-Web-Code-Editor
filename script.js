@@ -165,11 +165,71 @@ function saveVersion() {
     localStorage.setItem(VERSIONS_STORAGE_KEY, JSON.stringify(versions));
 }
 
-shareCodeButton.addEventListener('click', () => {
+function encodeBase64URLSafe(str) {
+    return btoa(unescape(encodeURIComponent(str)))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+}
+
+function decodeBase64URLSafe(str) {
+    try {
+        const base64 = str
+            .replace(/-/g, '+')
+            .replace(/_/g, '/')
+            .padEnd(str.length + (4 - (str.length % 4)) % 4, '=');
+        return decodeURIComponent(escape(atob(base64)));
+    } catch (error) {
+        console.error('Error decoding Base64:', error);
+        throw new URIError('The string to be decoded is not correctly encoded.');
+    }
+}
+
+shareCodeButton.addEventListener('click', async () => {
     const code = codeEditor.getValue();
-    const encodedCode = btoa(unescape(encodeURIComponent(code)));
-    const shareableLink = `${window.location.origin}?code=${encodedCode}`;
-    prompt('Copy and share this URL:', shareableLink);
+    const encodedCode = encodeBase64URLSafe(code);
+
+    const baseLink = `${window.location.origin}?code=${encodedCode}`;
+    try {
+        const shortLink = await getShortenedURL(baseLink);
+        prompt('Copy and share this URL:', shortLink);
+    } catch (error) {
+        console.error('Error generating short URL:', error);
+        prompt('Copy and share this URL:', baseLink);
+    }
+});
+
+async function getShortenedURL(longURL) {
+    const apiUrl = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(longURL)}`;
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Failed to shorten URL');
+        }
+        return await response.text();
+    } catch (error) {
+        console.error('Error with URL shortening service:', error);
+        throw error;
+    }
+}
+
+window.addEventListener('load', () => {
+    const savedCode = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const sharedCode = getQueryParam('code');
+    if (sharedCode) {
+        try {
+            const decodedCode = decodeBase64URLSafe(sharedCode);
+            codeEditor.setValue(decodedCode);
+            const formattedCode = prettier.format(decodedCode, { parser: 'babel', plugins: [window.prettierPlugins.babel] });
+            codeEditor.setValue(formattedCode);
+            history.replaceState(null, null, window.location.pathname);
+        } catch (e) {
+            console.error('Error decoding the shared code:', e);
+            alert('Failed to load shared code. It may be corrupted or incorrectly encoded.');
+        }
+    } else if (savedCode) {
+        codeEditor.setValue(savedCode);
+    }
 });
 
 consoleInput.addEventListener('keydown', (event) => {
@@ -195,21 +255,3 @@ function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
-
-window.addEventListener('load', () => {
-    const savedCode = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const sharedCode = getQueryParam('code');
-    if (sharedCode) {
-        try {
-            const decodedCode = decodeURIComponent(escape(atob(sharedCode)));
-            codeEditor.setValue(decodedCode);
-            const formattedCode = prettier.format(decodedCode, { parser: 'babel', plugins: [window.prettierPlugins.babel] });
-            codeEditor.setValue(formattedCode);
-            history.replaceState(null, null, window.location.pathname);
-        } catch (e) {
-            console.error("Error decoding the shared code: ", e);
-        }
-    } else if (savedCode) {
-        codeEditor.setValue(savedCode);
-    }
-});
