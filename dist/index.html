@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Code Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/theme/monokai.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="container">
+        <div class="editor">
+            <textarea id="code-editor">console.log('Hello, World!');</textarea>
+        </div>
+        <div class="controls">
+            <div>
+                <button id="run-code">Run Code</button>
+                <button id="clear-console">Clear Console</button>
+                <button id="export-code">Export Code</button>
+                <button id="import-code">Import Code</button>
+                <button id="format-code">Format Code</button>
+                <button id="share-code">Share Code</button>
+                <button id="examples-button">Examples</button>
+                <div id="examples-list" class="">
+                    <ul id="examples-ul"></ul>
+                </div>
+                <input type="file" id="file-input" style="display:none;">
+                <div class="console-filters">
+                    <h3>Console Filters: </h3>
+                    <button id="filter-log" class="filter-button">Log</button>
+                    <button id="filter-error" class="filter-button">Error</button>
+                    <button id="filter-warn" class="filter-button">Warn</button>
+                </div>                
+            </div>
+            <div class="theme-controls">
+                <button id="toggle-theme">Toggle Theme</button>
+                <button id="github-support">
+                    <a href="https://github.com/Luis-Tanese/JS-Web-Code-Editor" target="_blank">
+                        Made by Tanese
+                    </a>
+                </button>
+            </div>            
+        </div>
+        <div id="console" class="console"></div>
+        <input type="text" id="console-input" class="console-input" placeholder="Type JavaScript code here and press Enter">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/addon/hint/javascript-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/addon/lint/lint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/addon/lint/javascript-lint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jshint/2.13.4/jshint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/eslint/8.12.1/eslint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettier/2.7.1/standalone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettier/2.7.1/parser-babel.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--editor-bg);
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.editor {
+    flex: 1;
+    padding: 10px;
+    background-color: var(--editor-bg);
+    color: var(--editor-text);
+    overflow: auto; /* Allows scrolling for long code on small screens */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Flexible layout with min-max widths */
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--control-bg);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.theme-controls {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+#toggle-theme, #github-support {
+    padding: 8px;
+    font-size: 14px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#github-support a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#toggle-theme:hover, #github-support:hover {
+    background-color: #555;
+}
+
+.console-filters {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.console-filters h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 10px;
+    font-family: 'Arial', sans-serif;
+    color: var(--editor-text);
+}
+
+.filter-button {
+    padding: 5px 15px;
+    font-size: 12px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    width: 60px;
+    height: 30px;
+}
+
+.filter-button:hover {
+    background-color: #555;
+}
+
+.filter-button.active {
+    background-color: #28a745; 
+    color: white;
+}
+
+.filter-button.inactive {
+    background-color: #6c757d;
+    color: white;
+}
+
+.dark-theme .filter-button.active {
+    background-color: #20c997;
+}
+
+.dark-theme .filter-button.inactive {
+    background-color: #495057;
+}
+
+button, .filter-button, #toggle-theme, #github-support {
+    padding: 10px;
+    font-size: 14px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .filter-button:hover, #toggle-theme:hover, #github-support:hover {
+    background-color: #555;
+}
+
+.console {
+    background-color: var(--console-bg);
+    color: var(--console-text);
+    padding: 10px;
+    height: 150px;
+    overflow-y: auto;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow-x: hidden;
+    border: 2px solid var(--console-border);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.console-input {
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    border: none;
+    background-color: var(--console-bg);
+    color: var(--console-text);
+    border-radius: 4px;
+    margin-top: 10px;
+    border: 2px solid var(--console-border);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--control-bg);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media (max-width: 1024px) {
+    .controls {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjusted for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .controls {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* More compact for smaller screens */
+        gap: 5px;
+    }
+    button, .filter-button, #toggle-theme, #github-support {
+        padding: 6px;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    .console {
+        height: 100px;
+        font-size: 12px;
+    }
+    .console-input {
+        font-size: 12px;
+    }
+}
+
+:root {
+    --editor-bg: #f9f9f9;
+    --editor-text: #333;
+    --control-bg: #eeeeee;
+    --console-bg: #eeeeee;
+    --console-text: #333;
+    --console-border: #ccc;
+    --button-bg: #333;
+    --button-text: #ffffff;
+}
+
+.dark-theme {
+    --editor-bg: #1e1e1e;
+    --editor-text: #c5c5c5;
+    --control-bg: #2e2e2e;
+    --console-bg: #1e1e1e;
+    --console-text: #d4d4d4;
+    --console-border: #4e4e4e;
+    --button-bg: #4e4e4e;
+    --button-text: #ffffff;
+}
+
+/* Styling the examples list container */
+#examples-list {
+    position: absolute;
+    top: 60px; /* Adjust as needed for alignment */
+    left: 20px; /* Adjust positioning */
+    width: 250px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: var(--control-bg);
+    border: 1px solid var(--console-border);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    display: none;
+    z-index: 1000;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth appearance */
+    transform: translateY(-10px); /* Start slightly above */
+    opacity: 0;
+}
+
+/* When the list is visible, make it appear smoothly */
+#examples-list.visible {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Styling the list items */
+#examples-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#examples-list li {
+    padding: 12px 16px; /* Better spacing */
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Courier New', monospace; /* Matches editor font */
+    background-color: var(--editor-bg);
+    color: var(--editor-text);
+    border-bottom: 1px solid var(--console-border); /* Separator */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Remove border for the last item */
+#examples-list li:last-child {
+    border-bottom: none;
+}
+
+/* Hover effects for list items */
+#examples-list li:hover {
+    background-color: #555; /* Dark hover background */
+    color: #fff; /* Light text for contrast */
+    transform: translateX(4px); /* Slight movement for feedback */
+}
+
+/* Scrollbar styling for the list */
+#examples-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#examples-list::-webkit-scrollbar-track {
+    background: var(--control-bg);
+    border-radius: 4px;
+}
+
+#examples-list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+#examples-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
